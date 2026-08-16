@@ -1,7 +1,7 @@
 # The HoL Automaton:
 In the book *House of Leaves* by Mark Z. Danielewski, a central mystery was that the house of Will Navidson and Karen Green was measured to be 5/16 inches wider on the inside—a geometrical impossibility. At first, they assumed this was measurement error, but after extensive re-measurements, the anomaly persisted.
 
-The HoL (House of Leaves) Automaton was a deterministic cellular automaton I implemented that displays several curious emergent behaviors, including an anomaly that reminded me of this book. Let's first go through the automaton's simple rules.
+The HoL (House of Leaves) Automaton is a deterministic cellular automaton I implemented that displays several curious emergent behaviors, including an anomaly that reminded me of this book. Let's first go through the automaton's simple rules.
 
 ## HoL Automaton rules:
 1) Start with a black-and-white grid of cells, which is to be overwritten on each round with a new color configuration.
