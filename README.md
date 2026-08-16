@@ -16,8 +16,15 @@ Extra notes:
 - The width and height of the grid are even so the checkerboard pattern joins correctly at the wrapped edges.
 
 ## Emergent behaviors:
-- **Self-healing:** Starting from almost any random initial distribution of black cells (e.g. 1% black cells, 50% black cells, 99% black cells, etc.), the grid will eventually converge to 30.0% black cells. Moreover, the 30.0% convergence was observed to hold across different grid dimensions and random seeds.
-- **The anomaly:** The 30.0% number cannot be accounted for by standard probabilistic modeling, which instead predicts a proportion of 29.3%—a consistent percentage point anomaly of +0.7 pp which is unexplained by one-off measurement error (30.0% holds consistently across different random seeds and grid dimensions). See below for the 29.3% figure derivation.
+### Self-healing:
+Starting from almost any random initial distribution of black cells (e.g. 1% black cells, 50% black cells, 99% black cells, etc.), the grid will eventually converge to ~30.0% black cells. Moreover, the 30.0% convergence was observed to hold across different grid dimensions and random seeds.
+
+Note that for finite grids, the automaton will eventually cycle, so grids of different dimensions will obviously have tiny differences in their measured convergence limits due to finite sequence lengths. Based on my experimentation, my conjecture is that as the width and length of the grids approach infinity, there is a universal convergence limit near 30.0%.
+
+### The anomaly:
+The 30.0% number cannot be accounted for by standard probabilistic modeling, which instead predicts a proportion of 29.3%—a consistent percentage point anomaly of +0.7 pp which is unexplained by one-off measurement error (30.0% holds consistently across different random seeds and grid dimensions). See below for the 29.3% figure derivation.
+
+Since this is a deterministic automaton rather than a random process, it is clear that a probabilistic model is only an approximation of the real process. But then the question is - how do we derive the ~30.0% convergence limit?
 
 ## Probabilistic Modeling:
 Here, I'll derive the 29.3% figure via an idealized probabilistic model of the HoL automaton. We make the following assumptions:
