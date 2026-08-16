@@ -1,8 +1,3 @@
-# The HoL Automaton:
-In the book *House of Leaves* by Mark Z. Danielewski, a central mystery was that the house of Will Navidson and Karen Green was measured to be 5/16 inches wider on the inside—a geometrical impossibility. At first, they assumed this was a dismissable measurement error, but after extensive re-measurements, the anomaly persisted.
-
-The HoL (House of Leaves) Automaton is a deterministic cellular automaton I implemented that displays several curious emergent behaviors, including an anomaly that reminded me of this book. Let's first go through the automaton's simple rules.
-
 ## HoL Automaton rules:
 1) Start with a black-and-white grid of cells, which is to be overwritten on each round with a new color configuration.
 2) Each cell is either of rule type "3" or rule type "4", with the rule type for each cell being fixed throughout the automaton's duration. The rule types are distributed in a strict checkerboard pattern in the grid.
@@ -15,19 +10,17 @@ Extra notes:
 - The edges of the grid wrap around to the opposite edge.
 - The length and width of the grid are even so the checkerboard pattern joins correctly at the wrapped edges.
 
-## Emergent behaviors:
-### Self-healing stability:
-Starting from almost any random initial distribution of black cells (e.g. 1% black cells, 50% black cells, 99% black cells, etc.), the grid will eventually converge to ~30.0% black cells. Moreover, the 30.0% convergence was observed to hold across different grid dimensions and random seeds.
+## Emergent behavior: self-recovering stability:
+The HoL automaton displays a remarkable ability to recover stability from nearly any extreme initial state. Starting from nearly any random initial distribution of black cells (e.g. 1% black cells, 50% black cells, 99% black cells, etc.), the grid will eventually converge to ~30.0% black cells. This 30.0% convergence phenomenon was observed to hold across various grid dimensions, initial black cell proportions, and random seedings.
 
-Note that for finite grids, the automaton will eventually cycle, so grids of different dimensions will obviously have tiny differences in their measured convergence limits due to finite sequence length. On the other hand, based on my experimentation, my core conjecture is that as the length and width of the grids approach infinity, their limits approach a universal convergence value near 30.0%.
+What makes this 30.0% figure particularly interesting is that it's not derivable from standard probabilistic modeling of the automaton. Indeed, if one were to simulate the automaton with a standard probabilistic model, they would arrive at a predicted proportion of 29.3%, which is an imperfect approximation with a 0.7 percentage point error. This is a small error, but a real one that persists across all kinds of initializations. The open question is then: "Given that the automaton's rules are deterministic, how do we derive the eventual proportion of black cells in the grid?"
 
-### The anomaly:
-The 30.0% number cannot be accounted for by simulating the automaton with a standard probabilistic model, which instead predicts a proportion of 29.3%. Like the folks in House of Leaves, I was originally tempted to write off the tiny 0.7 pp discrepancy as a one-off measurement error due to experimental variance. However, what I found was that 30.0% was remarkably stable. No matter how I varied the random seed and grid dimensions, the irritating 0.7 pp delta just wouldn't go away.
-
-Since HoL is a deterministic automaton rather than a random process, a perceptive reader might be tempted to explain away this discrepancy by citing the fact that a probabilistic model is a non-exact approximation of a deterministic process and leave it at that. Indeed, but the uncomfortable question that remains is "if that didn't work, then how *do* we derive the ~30.0% convergence limit? And is it derivable from first principles without needing to assume an a posteriori regularity fact?" I call this question uncomfortable because mathematicians pride themselves in answering questions about a priori things using a priori methods. However, even in my probabilistic model, I myself had to impose non-self-evident regularity conditions to carry out my proportion calculations. HoL is describable purely a priori, so one would hope that there exists an a priori proof and derivation of its limit. If so, I would be intrigued to see what such a proof would look like.
+## Open Mathematical Questions:
+- Why does the HoL automaton's black cell proportion stabilize at all?
+- How do we derive the ~30.0% black cell limiting proportion from first principles?
 
 ## Probabilistic Modeling:
-Here, I'll derive the 29.3% figure via an idealized probabilistic model of the HoL automaton. We make the following assumptions:
+Here, I'll derive the 29.3% figure mentioned earlier via an idealized probabilistic model of the HoL automaton. We make the following assumptions:
 1) Eventually, the proportion of black cells stabilizes
 2) Each rule type 3 cell simulates an independent Bernoulli random variable with probability $p_3$ of being black on any given round.
 3) Each rule type 4 cell simulates an independent Bernoulli random variable with probability $p_4$ of being black on any given round.
@@ -88,7 +81,3 @@ $$
 $$
 
 or approximately **29.3%**.
-
-## Open Questions:
-- A first-principles derivation of the ~30.0% stabilizing limit that does not smuggle in a posteriori assumptions. In particular, overfitting a model to the experimental observations without justifying the modelling assumptions from first principles is invalid.
-- A first-principles proof for the black tile proportion stabilizing at all.
