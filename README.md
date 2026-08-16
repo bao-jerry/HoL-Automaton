@@ -24,7 +24,7 @@ Note that for finite grids, the automaton will eventually cycle, so grids of dif
 ### The anomaly:
 The 30.0% number cannot be accounted for by simulating the automaton with a standard probabilistic model, which instead predicts a proportion of 29.3%—a consistent percentage point anomaly of +0.7 pp that is unexplained by one-off measurement error (30.0% holds consistently across different random seeds and grid dimensions). See below for the 29.3% figure derivation.
 
-Since HoL is a deterministic automaton rather than a random process, one might be tempted to explain away this discrepancy by citing the fact that a probabilistic model is a non-exact approximation of a deterministic process and leave it at that. However, the bothersome question that remains is "if that didn't work, then how *do* we actually derive the ~30.0% convergence limit?"
+Since HoL is a deterministic automaton rather than a random process, one might be tempted to explain away this discrepancy by citing the fact that a probabilistic model is a non-exact approximation of a deterministic process and leave it at that. However, the uncomfortable questions that remain is "if that didn't work, then how *do* we actually derive the ~30.0% convergence limit?", and—"can it be derived from first principles without needing to assume an a posteriori fact?"
 
 ## Probabilistic Modeling:
 Here, I'll derive the 29.3% figure via an idealized probabilistic model of the HoL automaton. We make the following assumptions:
@@ -90,5 +90,5 @@ $$
 or approximately **29.3%**.
 
 ## Open Questions:
-- A first-principles derivation of the ~30.0% stabilizing limit that does not smuggle in post-hoc assumptions. In particular, overfitting a model to the experimental observations without justifying the modelling assumptions from first principles is invalid.
+- A first-principles derivation of the ~30.0% stabilizing limit that does not smuggle in a posteriori assumptions. In particular, overfitting a model to the experimental observations without justifying the modelling assumptions from first principles is invalid.
 - A first-principles proof for the black tile proportion stabilizing at all.
