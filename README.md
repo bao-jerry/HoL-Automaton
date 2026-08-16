@@ -1,4 +1,4 @@
-## HoL Automaton rules:
+## Emergent Homeostat (EH) Automaton rules:
 1) Start with a black-and-white grid of cells, which is to be overwritten on each round with a new color configuration.
 2) Each cell is either of rule type "3" or rule type "4", with the rule type for each cell being fixed throughout the automaton's duration. The rule types are distributed in a strict checkerboard pattern in the grid.
 3) On each round, each cell is either colored white (0) or black (1).
@@ -11,16 +11,18 @@ Extra notes:
 - The length and width of the grid are even so the checkerboard pattern joins correctly at the wrapped edges.
 
 ## Emergent behavior: self-recovering stability:
-The HoL automaton displays a remarkable ability to recover stability from nearly any extreme initial state. Starting from nearly any random initial distribution of black cells (e.g. 1% black cells, 50% black cells, 99% black cells, etc.), the grid will eventually converge to ~30.0% black cells. This 30.0% convergence phenomenon was observed to hold across various grid dimensions, initial black cell proportions, and random seedings.
+The EH automaton displays a remarkable ability to recover stability from nearly any extreme initial state. Starting from nearly any random initial distribution of black cells (e.g. 1% black cells, 50% black cells, 99% black cells, etc.), the grid will eventually converge to ~30.0% black cells. This 30.0% convergence phenomenon was observed to hold across various grid dimensions, initial black cell proportions, and random seedings.
 
-What makes this 30.0% figure particularly interesting is that it's not precisely derivable from standard probabilistic modeling of the automaton. Indeed, if one were to simulate the automaton with a standard probabilistic model, they would arrive at a predicted proportion of 29.3%, which is an imperfect approximation with a 0.7 percentage point error. This is a small error, but a real one that persists across all kinds of initializations. It is reasonable to ask: "Given that the automaton's rules are fully deterministic, shouldn't there exist an explicit, first-principles derivation of the eventual proportion of black tiles?" We have the following open questions:
+What makes this 30.0% figure particularly interesting is that it's not precisely derivable from standard probabilistic modeling of the automaton. Indeed, if one were to simulate the automaton with a standard probabilistic model, they would arrive at a predicted proportion of 29.3%, which is an imperfect approximation with a ~0.7 percentage point error. This is a small error, but a real one that persists across all kinds of initializations. It is thus reasonable to ask ourselves: "Given that the automaton's rules are fully deterministic, shouldn't we deem it likely that there exists an explicit, first-principles derivation of the eventual proportion of black tiles?"
 
-## Open Questions:
-- Why should the HoL automaton's black cell proportion stabilize at all?
+We have the following open questions:
+
+## Open Mathematical Questions:
+- Why should the EH automaton's black cell proportion stabilize at all?
 - How do we derive the ~30.0% black cell proportion convergence limit from first principles?
 
 ## Probabilistic Modeling:
-Here, I'll derive the 29.3% figure mentioned earlier via an idealized probabilistic model of the HoL automaton. We make the following assumptions:
+Here, I'll derive the 29.3% figure mentioned earlier via an idealized probabilistic model of the EH automaton. We make the following assumptions:
 1) Eventually, the proportion of black cells stabilizes
 2) Each rule type 3 cell simulates an independent Bernoulli random variable with probability $p_3$ of being black on any given round.
 3) Each rule type 4 cell simulates an independent Bernoulli random variable with probability $p_4$ of being black on any given round.
