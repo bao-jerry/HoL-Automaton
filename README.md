@@ -8,8 +8,8 @@ The HoL (House of Leaves) Automaton is a deterministic cellular automaton I impl
 2) Each cell is either of rule type "3" or rule type "4", with the rule type for each cell being fixed throughout the automaton's duration. The rule types are distributed in a strict checkerboard pattern in the grid.
 3) On each round, each cell is either colored white (0) or black (1).
 4) On each round, the coloring rule for a cell is as follows:
-   1) If the cell has rule type 3, then it becomes black if its # of black neighbors (including diagonal ones) from the previous round is 1 mod 3.
-   2) If the cell has rule type 4, then it becomes black if its # of black neighbors (including diagonal ones) from the previous round is 1 mod 4.
+   1) If the cell has rule type 3, then it becomes black if its # of black neighbors (including diagonal ones) from the previous round is 1 mod 3. It becomes white otherwise.
+   2) If the cell has rule type 4, then it becomes black if its # of black neighbors (including diagonal ones) from the previous round is 1 mod 4. It becomes white otherwise.
 
 Extra notes:
 - The edges of the grid wrap around to the opposite edge.
