@@ -16,7 +16,7 @@ The HoL automaton displays a remarkable ability to recover stability from nearly
 What makes this 30.0% figure particularly interesting is that it's not precisely derivable from standard probabilistic modeling of the automaton. Indeed, if one were to simulate the automaton with a standard probabilistic model, they would arrive at a predicted proportion of 29.3%, which is an imperfect approximation with a 0.7 percentage point error. This is a small error, but a real one that persists across all kinds of initializations. It's then reasonable to ask: "Given that the automaton's rules are fully deterministic, shouldn't there exist an explicit, first-principles derivation of the eventual proportion of black tiles?"
 
 ## Open Questions:
-- Why does the HoL automaton's black cell proportion stabilize at all?
+- Why should the HoL automaton's black cell proportion stabilize at all?
 - How do we derive the ~30.0% black cell limiting proportion from first principles?
 
 ## Probabilistic Modeling:
