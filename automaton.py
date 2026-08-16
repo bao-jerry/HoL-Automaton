@@ -14,22 +14,24 @@ import numpy as np
 # ============================================================================
 
 GRID_WIDTH = 200
-GRID_HEIGHT = 350
+GRID_HEIGHT = 200
 
-INITIAL_BLACK_PERCENT = 1.0
-ROUNDS_PER_SECOND = 20.0
+INITIAL_BLACK_PERCENT = 0.5
+ROUNDS_PER_SECOND = 2.0
 RANDOM_SEED = 40
+START_PAUSED = True
 
 # Number of recent rounds displayed in the graph and included in its average.
 # If fewer rounds have been recorded, all available rounds are used.
-WINDOW_ROUNDS = 1000
+WINDOW_ROUNDS = 100
 
 
 # ============================================================================
 # DISPLAY DETAILS -- not part of the automaton's rules.
 # ============================================================================
 
-GRID_PANEL_PIXELS = 800
+# The GUI is 720 pixels tall, leaving room for window borders and the taskbar.
+GRID_PANEL_PIXELS = 720
 GRAPH_WIDTH = 460
 GRAPH_SCROLL_ROUNDS = 10
 BLACK_RGB = (8, 10, 15)
@@ -361,7 +363,7 @@ def draw_population_graph(
 
     pygame.draw.rect(screen, background, rectangle)
     screen.blit(
-        font.render("House of Leaves black populations", True, text_color),
+        font.render("Black cell proportion tracker", True, text_color),
         (rectangle.left + 22, rectangle.top + 18),
     )
     visible, first_round, last_round = graph_history_window(history, view_end)
@@ -467,6 +469,8 @@ def draw_population_graph(
 
 def run() -> None:
     """Open the animation and run until the user quits."""
+    if not isinstance(START_PAUSED, bool):
+        raise ValueError("START_PAUSED must be True or False.")
     try:
         import pygame
     except ImportError as error:
@@ -497,7 +501,7 @@ def run() -> None:
     )
     history = [automaton.population_percentages()]
     graph_view_end: int | None = None
-    paused = False
+    paused = START_PAUSED
     single_step = False
     running = True
     redraw = True
@@ -519,7 +523,7 @@ def run() -> None:
                         automaton.reset()
                         history[:] = [automaton.population_percentages()]
                         graph_view_end = None
-                        paused = False
+                        paused = START_PAUSED
                         redraw = True
                         next_round_at = time.perf_counter() + interval
                     elif event.key in (pygame.K_LEFT, pygame.K_LEFTBRACKET):
