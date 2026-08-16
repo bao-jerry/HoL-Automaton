@@ -19,7 +19,7 @@ Extra notes:
 ### Self-healing stability:
 Starting from almost any random initial distribution of black cells (e.g. 1% black cells, 50% black cells, 99% black cells, etc.), the grid will eventually converge to ~30.0% black cells. Moreover, the 30.0% convergence was observed to hold across different grid dimensions and random seeds.
 
-Note that for finite grids, the automaton will eventually cycle, so grids of different dimensions will obviously have tiny differences in their measured convergence limits due to finite sequence lengths. Based on my experimentation, my conjecture is that as the width and length of the grids approach infinity, there is a universal convergence limit near 30.0%.
+Note that for finite grids, the automaton will eventually cycle, so grids of different dimensions will obviously have tiny differences in their measured convergence limits due to finite sequence lengths. On the other hand, based on my experimentation, my core conjecture is that as the width and length of the grids approach infinity, there exists a universal convergence limit near 30.0%.
 
 ### The anomaly:
 The 30.0% number cannot be accounted for by standard probabilistic modeling, which instead predicts a proportion of 29.3%—a consistent percentage point anomaly of +0.7 pp which is unexplained by one-off measurement error (30.0% holds consistently across different random seeds and grid dimensions). See below for the 29.3% figure derivation.
