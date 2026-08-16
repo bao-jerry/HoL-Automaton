@@ -1,7 +1,7 @@
 # The HoL Automaton:
 In the book *House of Leaves* by Mark Z. Danielewski, a central mystery was that the house of Will Navidson and Karen Green was measured to be 5/16 inches wider on the inside—a geometrical impossibility. At first, they assumed this was measurement error, but after extensive re-measurements, the anomaly persisted.
 
-The HoL (House of Leaves) Automaton was a cellular automaton I found that displays several curious emergent behaviors, including an anomaly that reminded me of this book. Let's first go through the automaton's simple rules.
+The HoL (House of Leaves) Automaton was a deterministic cellular automaton I implemented that displays several curious emergent behaviors, including an anomaly that reminded me of this book. Let's first go through the automaton's simple rules.
 
 ## HoL Automaton rules:
 1) Start with a black-and-white grid of cells, which is to be overwritten on each round with a new color configuration.
@@ -18,7 +18,6 @@ Extra notes:
 ## Emergent behaviors:
 - **Self-healing:** Starting from almost any random initial distribution of black cells (e.g. 1% black cells, 50% black cells, 99% black cells, etc.), the grid will eventually converge to 30.0% black cells. Moreover, the 30.0% convergence was observed to hold across different grid dimensions and random seeds.
 - **The anomaly:** The 30.0% number cannot be accounted for by standard probabilistic modeling, which instead predicts a proportion of 29.3%—a consistent percentage point anomaly of +0.7 pp which is unexplained by one-off measurement error (30.0% holds consistently across different random seeds and grid dimensions). See below for the 29.3% figure derivation.
-- **Determinism:** The automaton's phase transitions are fully deterministic and non-random.
 
 ## Probabilistic Modeling:
 Here, I'll derive the 29.3% figure via a simplified probabilistic model of the HoL automaton. We make the following assumptions:
