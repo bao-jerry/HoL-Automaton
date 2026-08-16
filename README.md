@@ -11,11 +11,11 @@ Extra notes:
 - The length and width of the grid are even so the checkerboard pattern joins correctly at the wrapped edges.
 
 ## Emergent behavior: self-recovering stability:
-The HoL automaton displays a remarkable ability to recover stability from nearly any extreme initial state. Starting from nearly any random initial distribution of black cells (e.g. 1% black cells, 50% black cells, 99% black cells, etc.), the grid will eventually converge to ~30.0% black cells. This 30.0% convergence phenomenon was observed to hold across various grid dimensions, initial black cell proportions, and random seedings.
+The HoL automaton displays a remarkable ability to aggressively recover stability from nearly any extreme initial state. Starting from nearly any random initial distribution of black cells (e.g. 1% black cells, 50% black cells, 99% black cells, etc.), the grid will eventually converge to ~30.0% black cells. This 30.0% convergence phenomenon was observed to hold across various grid dimensions, initial black cell proportions, and random seedings.
 
-What makes this 30.0% figure particularly interesting is that it's not derivable from standard probabilistic modeling of the automaton. Indeed, if one were to simulate the automaton with a standard probabilistic model, they would arrive at a predicted proportion of 29.3%, which is an imperfect approximation with a 0.7 percentage point error. This is a small error, but a real one that persists across all kinds of initializations. The open question is then: "Given that the automaton's rules are deterministic, how do we derive the eventual proportion of black cells in the grid?"
+What makes this 30.0% figure particularly interesting is that it's not derivable from standard probabilistic modeling of the automaton. Indeed, if one were to simulate the automaton with a standard probabilistic model, they would arrive at a predicted proportion of 29.3%, which is an imperfect approximation with a 0.7 percentage point error. This is a small error, but a real one that persists across all kinds of initializations. It's then reasonable to ask: "Given that the automaton's rules are deterministic, shouldn't there exist an explicit first-principles derivation of black's eventual proportion?"
 
-## Open Mathematical Questions:
+## Open Questions:
 - Why does the HoL automaton's black cell proportion stabilize at all?
 - How do we derive the ~30.0% black cell limiting proportion from first principles?
 
