@@ -20,7 +20,7 @@ Extra notes:
 - **The anomaly:** The 30.0% number cannot be accounted for by standard probabilistic modeling, which instead predicts a proportion of 29.3%—a consistent percentage point anomaly of +0.7 pp which is unexplained by one-off measurement error (30.0% holds consistently across different random seeds and grid dimensions). See below for the 29.3% figure derivation.
 
 ## Probabilistic Modeling:
-Here, I'll derive the 29.3% figure via a simplified probabilistic model of the HoL automaton. We make the following assumptions:
+Here, I'll derive the 29.3% figure via an idealized probabilistic model of the HoL automaton. We make the following assumptions:
 1) Eventually, the proportion of black cells stabilizes
 2) Each rule type 3 cell simulates an independent Bernoulli random variable with probability $p_3$ of being black on any given round.
 3) Each rule type 4 cell simulates an independent Bernoulli random variable with probability $p_4$ of being black on any given round.
