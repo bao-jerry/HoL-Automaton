@@ -1,4 +1,4 @@
-"""Run and visualize the House of Leaves cellular automaton."""
+"""Run and visualize the Emergent Homeostat cellular automaton."""
 
 from __future__ import annotations
 
@@ -50,7 +50,7 @@ NEIGHBOR_OFFSETS = (
 
 
 @dataclass(frozen=True)
-class AutomatonConfig:
+class HomeostatConfig:
     grid_width: int
     grid_height: int
     initial_black_percent: float
@@ -84,10 +84,10 @@ class AutomatonConfig:
             raise ValueError("ROUNDS_PER_SECOND must be finite and positive.")
 
 
-class HouseOfLeavesAutomaton:
+class EmergentHomeostat:
     """Alternate the mod-3 and mod-4 rules in a fixed checkerboard."""
 
-    def __init__(self, config: AutomatonConfig):
+    def __init__(self, config: HomeostatConfig):
         config.validate()
         self.config = config
         rows, columns = np.indices((config.grid_height, config.grid_width))
@@ -163,10 +163,10 @@ class HouseOfLeavesAutomaton:
         return total, mod3, mod4
 
 
-def configured_automaton() -> HouseOfLeavesAutomaton:
-    """Build an automaton from the experiment knobs at the top of this file."""
-    return HouseOfLeavesAutomaton(
-        AutomatonConfig(
+def configured_homeostat() -> EmergentHomeostat:
+    """Build the Emergent Homeostat from the experiment knobs above."""
+    return EmergentHomeostat(
+        HomeostatConfig(
             grid_width=GRID_WIDTH,
             grid_height=GRID_HEIGHT,
             initial_black_percent=INITIAL_BLACK_PERCENT,
@@ -183,7 +183,7 @@ def grid_surface(pygame: object, grid: np.ndarray) -> object:
     return pygame.surfarray.make_surface(np.transpose(rgb, (1, 0, 2)))
 
 
-def scaled_grid_size(config: AutomatonConfig) -> tuple[int, int]:
+def scaled_grid_size(config: HomeostatConfig) -> tuple[int, int]:
     scale = min(
         GRID_PANEL_PIXELS / config.grid_width,
         GRID_PANEL_PIXELS / config.grid_height,
@@ -258,7 +258,7 @@ def probability_model_step(
 
 
 def probability_model_prediction(
-    config: AutomatonConfig,
+    config: HomeostatConfig,
     max_iterations: int = 5_000,
     tolerance: float = 1e-13,
 ) -> PopulationPoint:
@@ -478,9 +478,9 @@ def run() -> None:
             "Pygame is not installed. Run: python -m pip install pygame"
         ) from error
 
-    automaton = configured_automaton()
-    expected = probability_model_prediction(automaton.config)
-    grid_size = scaled_grid_size(automaton.config)
+    homeostat = configured_homeostat()
+    expected = probability_model_prediction(homeostat.config)
+    grid_size = scaled_grid_size(homeostat.config)
     grid_position = (
         (GRID_PANEL_PIXELS - grid_size[0]) // 2,
         (GRID_PANEL_PIXELS - grid_size[1]) // 2,
@@ -493,13 +493,13 @@ def run() -> None:
     clock = pygame.time.Clock()
     font = pygame.font.Font(None, 32)
     small_font = pygame.font.Font(None, 22)
-    interval = 1.0 / automaton.config.rounds_per_second
+    interval = 1.0 / homeostat.config.rounds_per_second
     next_round_at = time.perf_counter() + interval
     event_rate = max(
         MIN_EVENT_LOOPS_PER_SECOND,
-        math.ceil(automaton.config.rounds_per_second * 2),
+        math.ceil(homeostat.config.rounds_per_second * 2),
     )
-    history = [automaton.population_percentages()]
+    history = [homeostat.population_percentages()]
     graph_view_end: int | None = None
     paused = START_PAUSED
     single_step = False
@@ -520,8 +520,8 @@ def run() -> None:
                     elif event.key == pygame.K_n and paused:
                         single_step = True
                     elif event.key == pygame.K_r:
-                        automaton.reset()
-                        history[:] = [automaton.population_percentages()]
+                        homeostat.reset()
+                        history[:] = [homeostat.population_percentages()]
                         graph_view_end = None
                         paused = START_PAUSED
                         redraw = True
@@ -556,15 +556,15 @@ def run() -> None:
 
             now = time.perf_counter()
             if single_step or (not paused and now >= next_round_at):
-                automaton.step()
-                history.append(automaton.population_percentages())
+                homeostat.step()
+                history.append(homeostat.population_percentages())
                 single_step = False
                 redraw = True
                 next_round_at = time.perf_counter() + interval
 
             if redraw:
                 screen.fill(BLACK_RGB)
-                surface = grid_surface(pygame, automaton.grid)
+                surface = grid_surface(pygame, homeostat.grid)
                 screen.blit(pygame.transform.scale(surface, grid_size), grid_position)
                 draw_population_graph(
                     pygame,
@@ -578,8 +578,8 @@ def run() -> None:
                 )
                 state = "PAUSED" if paused else "RUNNING"
                 pygame.display.set_caption(
-                    "House of Leaves Automaton | mod-3 / mod-4 checkerboard | "
-                    f"round {automaton.round_number} | "
+                    "Emergent Homeostat | mod-3 / mod-4 checkerboard | "
+                    f"round {homeostat.round_number} | "
                     f"black {history[-1][0]:.1f}% | {state} | "
                     "Space: pause  N: step  R: reset  Q: quit"
                 )
