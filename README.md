@@ -83,5 +83,5 @@ $$
 or approximately **29.3%**.
 
 ## Open Questions:
-- A first-principles derivation for the ~30.0% stabilizing limit that does not smuggle in post-hoc assumptions. In particular, overfitting a model to the experimental observations without justifying the modelling assumptions from first principles is invalid.
+- A first-principles derivation of the ~30.0% stabilizing limit that does not smuggle in post-hoc assumptions. In particular, overfitting a model to the experimental observations without justifying the modelling assumptions from first principles is invalid.
 - A first-principles proof for the black tile proportion stabilizing at all.
