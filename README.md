@@ -16,7 +16,7 @@ Extra notes:
 - The width and height of the grid are even so the checkerboard pattern joins correctly at the wrapped edges.
 
 ## Emergent behaviors:
-### Self-healing:
+### Self-healing stability:
 Starting from almost any random initial distribution of black cells (e.g. 1% black cells, 50% black cells, 99% black cells, etc.), the grid will eventually converge to ~30.0% black cells. Moreover, the 30.0% convergence was observed to hold across different grid dimensions and random seeds.
 
 Note that for finite grids, the automaton will eventually cycle, so grids of different dimensions will obviously have tiny differences in their measured convergence limits due to finite sequence lengths. Based on my experimentation, my conjecture is that as the width and length of the grids approach infinity, there is a universal convergence limit near 30.0%.
