@@ -38,9 +38,10 @@ The cell has $a+b$ black neighbors. Therefore, if $P_k$ is the probability that 
 
 $$
 P_k=
-\sum_{\substack{0\leq a\leq4,\;0\leq b\leq4\\a+b=k}}
-Q(a,b).
+\sum_{a=\max(0,k-4)}^{\min(4,k)} Q(a,k-a).
 $$
+
+Here, $b=k-a$, and the limits ensure that both $a$ and $b$ remain between 0 and 4.
 
 A type 3 cell becomes black when it has 1, 4, or 7 black neighbors, so its probability of being black on the next round is
 
